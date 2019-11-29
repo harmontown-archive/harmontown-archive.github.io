@@ -1,0 +1,14 @@
+    [
+      {
+        "episodeNumber": 1,
+        "episodeTitle": "To the moon",
+        "recordingDate": "2016-03-04",
+        "audioSize": 312312,
+        "audioMD5": "2ttwttwywe",
+        "audioMagnetLink": "",
+        "videoSize": 12312312,
+        "videoMD5": "asdfasdfasdf",
+        "videoMagnetLink": "",
+        "cast": ["Dan Harmon", "Jeff Davis"]
+      }
+    ]

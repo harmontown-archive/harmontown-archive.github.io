@@ -21,12 +21,16 @@
     </div>
     
     <script>
+
+      fetch('episodeInfo.json')
+        .then(response => response.json())
+        .then(data => console.log(data))
     
       let episodeInfo = [
         {
           episodeNumber: 1,
           episodeTitle: 'To the moon',
-          publishDate: '2016-03-04',
+          recordingDate: '2016-03-04',
           audioSize: 312312,
           audioMD5: '2ttwttwywe',
           audioMagnetLink: '',

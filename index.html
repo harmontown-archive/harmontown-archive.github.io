@@ -75,9 +75,12 @@
           <p>Publish Date: ${episodeInfo[i].publishDate}</p>
           <p>Video Size: ${episodeInfo[i].videoSize}</p>
           <p>Video MD5: ${episodeInfo[i].videoMD5}</p>
-          <p>Publish Date: ${episodeInfo[i].publishDate}</p>
-          <p>Main Cast: ${episodeInfo[i].mainCast}</p>
-          <p>Guests: ${episodeInfo[i].guests}</p>
+          <p>Video File Name: ${episodeInfo[i].videoFileName}</p>
+          <p>Recording Date: ${episodeInfo[i].recordingDate}</p>
+          <p>Cast: ${episodeInfo[i].cast}</p>
+          <p>
+            <a href="${episodeInfo[i].videoPageLink}">Episode page</a>
+          </p>
         `;
         
         document.getElementById('root').appendChild(nextElem);

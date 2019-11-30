@@ -1,75 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+<head>
+  <meta charset="utf-8" />
 
-    <meta name="theme-color" content="#000000" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-  </head>
-  <body>
-    <noscript>
+  <meta name="theme-color" content="#000000" />
+
+</head>
+
+<body>
+  <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
 
-    <div id="root">
-      Welcome to the Harmontown Archive! This goal of this site is to preserve the metadata for episodes of the podcast, including file hashes and magnet links to torrent downloads. This project was created by by /u/MomentsPause, but is meant to be a community effort. Everyone is encourged to pitch in by making pull requests on github.
-    </div>
-    
-    <script>
-    
-      // Dummy data used for local testing
-      let episodeInfo = [
-        {
-          episodeNumber: 1,
-          episodeTitle: 'To the moon',
-          recordingDate: '2016-03-04',
-          audioSize: 312312,
-          audioMD5: '2ttwttwywe',
-          audioMagnetLink: '',
-          videoSize: 12312312,
-          videoMD5: 'asdfasdfasdf',
-          videoMagnetLink: '',
-          mainCast: ['Dan Harmon, Jeff Davis'],
-          guests: ['Robin Williams']
-        },
-        {
-          episodeNumber: 2,
-          episodeTitle: 'To the moon',
-          recordingDate: '2016-03-04',
-          audioSize: 312312,
-          audioMD5: '2ttwttwywe',
-          audioMagnetLink: '',
-          videoSize: 12312312,
-          videoMD5: 'asdfasdfasdf',
-          videoMagnetLink: '',
-          mainCast: ['Dan Harmon, Jeff Davis'],
-          guests: ['Robin Williams']
-        }
-      ];
-      
-      // Load episode info
-      fetch('episodeInfo.json')
-        .then(response => response.json())
-        .then(data => {
-          episodeInfo = data
-      })
-      
-      // Sort descending by episode number
-      episodeInfo.sort((a, b) => a.episodeNumber > b.episodeNumber ? -1 : 1);
-      
-      // Build the HTML of the webpage
-      for (let i=0; i<episodeInfo.length; i++) {
+  <div id="root">
+    Welcome to the Harmontown Archive! This goal of this site is to preserve the metadata for episodes of the podcast, including file hashes and magnet links to torrent downloads. This project was created by by /u/MomentsPause, but is meant to be a community effort. Everyone is encourged to pitch in by making pull requests on github.
+  </div>
+
+  <script>
+    // Dummy data used for local testing
+    let episodeInfo = [{
+        episodeNumber: 1,
+        episodeTitle: 'To the moon',
+        recordingDate: '2016-03-04',
+        audioSize: 312312,
+        audioMD5: '2ttwttwywe',
+        audioMagnetLink: '',
+        videoSize: 12312312,
+        videoMD5: 'asdfasdfasdf',
+        videoMagnetLink: '',
+        mainCast: ['Dan Harmon, Jeff Davis'],
+        guests: ['Robin Williams']
+      },
+      {
+        episodeNumber: 2,
+        episodeTitle: 'To the moon',
+        recordingDate: '2016-03-04',
+        audioSize: 312312,
+        audioMD5: '2ttwttwywe',
+        audioMagnetLink: '',
+        videoSize: 12312312,
+        videoMD5: 'asdfasdfasdf',
+        videoMagnetLink: '',
+        mainCast: ['Dan Harmon, Jeff Davis'],
+        guests: ['Robin Williams']
+      }
+    ];
+
+    // Load episode info
+    fetch('episodeInfo.json')
+      .then(response => response.json())
+      .catch(err => episodeInfo)
+      .then(data => {
         
-        const nextElem = document.createElement('DIV');
-        
-        nextElem.className = 'episodeWrapper';
-        
-        nextElem.innerHTML = `
+        episodeInfo = data
+
+        // Sort descending by episode number
+        episodeInfo.sort((a, b) => a.episodeNumber > b.episodeNumber ? -1 : 1);
+
+        // Build the HTML of the webpage
+        for (let i = 0; i < episodeInfo.length; i++) {
+
+          const nextElem = document.createElement('DIV');
+
+          nextElem.className = 'episodeWrapper';
+
+          nextElem.innerHTML = `
           <p>Episode Number: ${episodeInfo[i].episodeNumber}</p>
           <p>Title: ${episodeInfo[i].episodeTitle}</p>
           <p>Publish Date: ${episodeInfo[i].publishDate}</p>
@@ -82,19 +80,21 @@
             <a href="${episodeInfo[i].videoPageLink}">Episode page</a>
           </p>
         `;
-        
-        document.getElementById('root').appendChild(nextElem);
-      }
-      
-    </script>
-    
-    <style>
-      .episodeWrapper {
-        margin: 20px;
-        border-bottom: 1px solid gray;
-      }
-    </style>
-    
-  </body>
-</html>
 
+          document.getElementById('root').appendChild(nextElem);
+        }
+      })
+
+  </script>
+
+  <style>
+    .episodeWrapper {
+      margin: 20px;
+      border-bottom: 1px solid gray;
+    }
+
+  </style>
+
+</body>
+
+</html>

@@ -17,15 +17,12 @@
     </noscript>
 
     <div id="root">
-      Welcome to the Harmontown Archive! This goal of this site is to preserve the metadata for episodes of the podcast, including file hashes and links to torrent downloads.
+      Welcome to the Harmontown Archive! This goal of this site is to preserve the metadata for episodes of the podcast, including file hashes and magnet links to torrent downloads. This project was created by by /u/MomentsPause, but is meant to be a community effort. Everyone is encourged to pitch in by making pull requests on github.
     </div>
     
     <script>
-
-      fetch('episodeInfo.json')
-        .then(response => response.json())
-        .then(data => console.log(data))
     
+      // Dummy data used for local testing
       let episodeInfo = [
         {
           episodeNumber: 1,
@@ -39,22 +36,51 @@
           videoMagnetLink: '',
           mainCast: ['Dan Harmon, Jeff Davis'],
           guests: ['Robin Williams']
+        },
+        {
+          episodeNumber: 2,
+          episodeTitle: 'To the moon',
+          recordingDate: '2016-03-04',
+          audioSize: 312312,
+          audioMD5: '2ttwttwywe',
+          audioMagnetLink: '',
+          videoSize: 12312312,
+          videoMD5: 'asdfasdfasdf',
+          videoMagnetLink: '',
+          mainCast: ['Dan Harmon, Jeff Davis'],
+          guests: ['Robin Williams']
         }
       ];
       
+      // Load episode info
+      fetch('episodeInfo.json')
+        .then(response => response.json())
+        .then(data => {
+          episodeInfo = data
+      })
+      
+      // Sort descending by episode number
+      episodeInfo.sort((a, b) => a.episodeNumber > b.episodeNumber ? -1 : 1);
+      
+      // Build the HTML of the webpage
       for (let i=0; i<episodeInfo.length; i++) {
         
         const nextElem = document.createElement('DIV');
         
         nextElem.className = 'episodeWrapper';
+        
         nextElem.innerHTML = `
+          <p>Episode Number: ${episodeInfo[i].episodeNumber}</p>
           <p>Title: ${episodeInfo[i].episodeTitle}</p>
           <p>Publish Date: ${episodeInfo[i].publishDate}</p>
           <p>Video Size: ${episodeInfo[i].videoSize}</p>
           <p>Video MD5: ${episodeInfo[i].videoMD5}</p>
-          <p>Publish Date: ${episodeInfo[i].publishDate}</p>
-          <p>Main Cast: ${episodeInfo[i].mainCast}</p>
-          <p>Guests: ${episodeInfo[i].guests}</p>
+          <p>Video File Name: ${episodeInfo[i].videoFileName}</p>
+          <p>Recording Date: ${episodeInfo[i].recordingDate}</p>
+          <p>Cast: ${episodeInfo[i].cast}</p>
+          <p>
+            <a href="${episodeInfo[i].videoPageLink}">Episode page</a>
+          </p>
         `;
         
         document.getElementById('root').appendChild(nextElem);
@@ -64,7 +90,6 @@
     
     <style>
       .episodeWrapper {
-        color: red;
         margin: 20px;
         border-bottom: 1px solid gray;
       }

@@ -16,7 +16,7 @@
     </noscript>
 
   <div id="root">
-    Welcome to the Harmontown Archive! This goal of this site is to preserve the metadata for episodes of the podcast, including file hashes and magnet links to torrent downloads. This project was created by by /u/MomentsPause, but is meant to be a community effort. Everyone is encourged to pitch in by making pull requests on github.
+    Welcome to the Harmontown Archive! This goal of this site is to preserve the metadata for episodes of the podcast, including file hashes and magnet links to torrent downloads. This project was created by by <a href="http://www.reddit.com/u/MomentsPause">/u/MomentsPause</a>, but is meant to be a community effort. Everyone is encourged to pitch in by making pull requests <a href="https://github.com/harmontown-archive/harmontown-archive.github.io">on github</a>.
   </div>
 
   <script>
@@ -57,6 +57,8 @@
         
         episodeInfo = data
 
+        console.log(episodeInfo);
+      
         // Sort descending by episode number
         episodeInfo.sort((a, b) => a.episodeNumber > b.episodeNumber ? -1 : 1);
 
